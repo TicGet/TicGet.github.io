@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="js\drop.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+  .myLink {display: none}
+  * {box-sizing: border-box;}
+  ul {list-style-type: none;}
+  body {font-family: Verdana, sans-serif;}
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script>
+ /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="navbar w3-border-bottom w3-white w3-xlarge w3-container">
+  <a href="index.html" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-ticket w3-margin-right"></i>TicGet</b></a>
+  <div class="dropdown w3-hover-red w3-red w3-right w3-hover-red">
+    <b><button class="dropbtn w3-button w3-bar-item w3-button w3-text-red w3-hover-red w3-white" onclick="myFunction()">Menu
+      <i class="fa fa-list-ul"></i></b>
+    </button>
+    <div class="dropdown-content w3-border" id="myDropdown">
+      <a href="LogOn.html">Log In</a>
+      <a href="Sign Up.html">Sign Up</a>
+      <a href="About.html">About</a>
+    </div>
+  </div> 
+</div>
+
+
+
+<div ng-app="myApp"><div ng-controller="crud_controller">
+<!--Split in two, yo-->
+<!--Left -->
+ <div class="w3-row w3-container w3-white w3-margin w3-border">
+  <div class="w3-col s6 w3-border-right w3-left w3-container w3-center" id="crud_c">
+    <form class="form-group">
+  	<p><input class="w3-input w3-padding-16 w3-border form-control" type="text" placeholder="First Name" required ng-model="f_name"></p>
+  	<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Last Name" required ng-model="l_name"></p>
+  	<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Username / Email" required ng-model="username"></p>
+  	<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Password" required ng-model="password"></p>
+  </div>
+<!--Right-->
+  <div class="w3-col s6 w3-right w3-container w3-center">
+  	<p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Address" required ng-model="address"></p>
+  	<p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Credit Card Exp" required ng-model="cc_exp"></p>
+  	<p><input class="w3-input w3-padding-16 w3-border" type="number" placeholder="Credit Card #" required ng-model="cc_num"></p>
+  	<p><select class="w3-input w3-padding-16 w3-border" name="CCType" required ng-model="cc_type">
+      <option>CCType</option>
+      <option value="Visa">Visa</option>
+      <option value="Discover">Discover</option>
+      <option value="American Express">American Express</option></p>
+    </select>
+   </div>
+
+  </div>
+</div>
+
+ 
+<div class="w3-center">
+<p><button class="w3-button popup w3-center w3-border w3-padding-large w3-hover-red w3-text-red w3-white" type="submit" ng-click="save()">Sign Up!</button></p>
+</form>
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h5>Find Us On</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <a href="https://www.google.com/search?q=zuckerberg+robot&client=firefox-b-1-ab&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjhtKC7kc_aAhUO7FMKHeWuCOcQ_AUICigB&biw=1067&bih=519#imgrc=gMAo6c6QiZHuKM:">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+
+
+
+<script>
+var app = angular.module('myApp', []);
+
+
+app.controller('crud_controller', function($scope, $http) {
+  // query
+  $scope.show = function () {
+   $http.get("mysql/member")
+   .then(function (response) {
+      $scope.names = response.data;
+      $scope.c_status = 'Wow! It works!';
+      // console.log(response.data);
+  });
+ };
+
+
+  $scope.save = function () {
+    $http.post("mysql/member", {"idmember": $scope.idmember,"f_name": $scope.f_name, "l_name": $scope.l_name, "username": $scope.username, "password": $scope.password, "address": $scope.address, "cc_exp": $scope.cc_exp, "cc_num": $scope.cc_num, "cc_type": $scope.cc_type})
+    .then(function (response) {
+        // add locally!
+        $scope.names.push({"f_name": $scope.f_name, "l_name": $scope.l_name, "username": $scope.username, "password": $scope.password, "address": $scope.address, "cc_exp": $scope.cc_exp, "cc_num": $scope.cc_num, "cc_type": $scope.cc_type});
+
+        $scope.f_name = '';
+        $scope.l_name = '';     
+        $scope.username = '';
+        $scope.password = ''; 
+        $scope.address = '';
+        $scope.cc_exp = ''; 
+        $scope.cc_num = '';
+        $scope.cc_type = ''; 
+        $scope.r_status = 'Wow! It works!';
+        
+        alert('Record Added!');
+        // $scope.added = response.data;
+        console.log(response.data);
+    }, function myError(response) {
+      $scope.r_status = 'Ooops! Error!';
+    });
+  };
+
+
+
+
+});
+
+</script>
+
+</body>
+</html>

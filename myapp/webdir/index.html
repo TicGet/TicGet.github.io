@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+  <html>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="js\drop.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+ /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}
+</script>
+
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body class="w3-light-grey">
+
+
+<!-- Navigation Bar -->
+<div class="navbar w3-border-bottom w3-white w3-xlarge w3-container">
+  <a href="index.html" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-ticket w3-margin-right"></i>TicGet</b></a>
+  <div class="dropdown w3-hover-red w3-red w3-right w3-hover-red">
+    <b><button class="dropbtn w3-button w3-bar-item w3-button w3-text-red w3-hover-red w3-white" onclick="myFunction()">Menu
+      <i class="fa fa-list-ul"></i></b>
+    </button>
+    <div class="dropdown-content w3-border" id="myDropdown">
+      <a href="LogOn.html">Log In</a>
+      <a href="Sign Up.html">Sign Up</a>
+      <a href="About.html">About</a>
+    </div>
+  </div> 
+</div>
+
+
+
+
+<!-- Slideshow -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="mySlides w3-animate-fading" src="images/slide_killers.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_rhcp.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_country.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_BSA.jpeg" alt=":)" width="1500" height="700">
+</header>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 9000); // Change image every 2 seconds
+}
+</script>
+
+<div ng-app="myApp"><div ng-controller="crud_controller">
+
+<!--Interactive Menu-->
+  <div class="w3-display-middle" style="width:45%">
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Flight');"><i class="fa fa-calendar w3-margin-right"></i>Browse</button>
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Hotel');"><i class="fa fa-search w3-margin-right"></i>Search</button>
+    </div>
+
+    <!-- Tabs -->
+    <div id="Flight" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Browse all venues:</h3>
+      <div class="w3-row-padding" style="margin:0 -16px;">
+      </div>
+      <a href="browse.html">
+      <p><button class="w3-button w3-dark-grey">Click here</button></a></p>
+    </div>
+
+    <div id="Hotel" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Search venues to find event:</h3>
+      <form class="form-group">
+        <p><input type="text" class="form-control" ng-model="search_name search_city" required></input>
+          <button class="w3-button w3-dark-grey" type="submit" ng-click="search()">Search Venue</button></form>
+          <table class="table">
+            <tr>
+              <td>Name:</td>
+              <td>City:</td>
+            <tr ng-repeat="x in venuesFound">
+              <td>{{ x.vname }}</td>
+              <td>{{ x.city }}</td>
+            </tr>
+          </table>
+       </p>
+
+    </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</header>
+
+
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+
+  
+<!-- End page content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
+  <h5>Find Us On</h5>
+  <div class="w3-xlarge w3-padding-16">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+</div>
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+</script>
+
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('crud_controller', function($scope, $http) {
+  // query
+  $scope.show = function () {
+   $http.get("mysql/search_venue")
+   .then(function (response) {
+      $scope.vname = response.data;
+      $scope.c_status = 'Wow! It works!';
+      // console.log(response.data);
+  });
+ };
+
+
+  // search
+  $scope.search = function () {
+    $http.post("mysql/search_venue", {"vname": $scope.search_name, "city": $scope.search_city})
+    .then(function (response) {
+        $scope.venuesFound = response.data;
+        $scope.s_status = 'Wow! Found them!';
+    }, function myError(response) {
+      $scope.r_status = 'Ooops! Error!';
+    });
+  };
+
+
+});
+
+</script>
+
+</body>
+</html>

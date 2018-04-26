@@ -1,0 +1,65 @@
+.split {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.left {
+    left: 0;
+    background-color: white;
+}
+
+.right {
+    right: 0;
+    background-color: white;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.centered img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="mySlides w3-animate-fading" src="images/slide_killers.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_rhcp.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_country.jpg" alt=":)" width="1500" height="700">
+  <img class="mySlides w3-animate-fading" src="images/slide_BSA.jpeg" alt=":)" width="1500" height="700">
+</header>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 9000); // Change image every 2 seconds
+}
+</script>
